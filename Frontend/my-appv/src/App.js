@@ -99,11 +99,11 @@ function App() {
               centeredSlides={true}
               slidesPerView={"auto"}
               coverflowEffect={{
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
+                rotate: 25,
+                stretch: -50,
+                depth: 300,
                 modifier: 1,
-                slideShadows: true,
+                slideShadows: false,
               }}
               pagination={true}
               modules={[EffectCoverflow, Pagination]}
@@ -121,9 +121,9 @@ function App() {
                       <img src="https://www.pngitem.com/pimgs/m/402-4028746_icono-de-vivienda-png-transparent-png.png" alt="card image"></img>
                     </div>
                     <div className="card__content">
-                      <span className="card__title">{vivienda.direccion}</span>
-                      <span className="card__name">{vivienda.capacidad}</span>
-                      <p className="card__text">{vivienda.niveles}</p>
+                      <span className="card__title">Direccion: {vivienda.direccion}</span>
+                      <span className="card__name">Capacidad vivienda: {vivienda.capacidad}</span>
+                      <span className="card__name">Niveles Vivienda: {vivienda.niveles}</span>
                     </div>
                   </div>
 
@@ -139,10 +139,10 @@ function App() {
                   <div className="card__image">
                     <img src="https://cdn-icons-png.flaticon.com/512/16/16363.png" alt="card image"></img>
                   </div>
-                  <span className="card__title">{personGobernante.nombre}</span>
-                  <span className="card__name">{personGobernante.telefono}</span>
-                  <p className="card__text">{personGobernante.edad}</p>
-                  <button className="card__btn">{personGobernante.sexo}</button>
+                  <span className="card__title">Nombre: {personGobernante.nombre}</span>
+                  <span className="card__name">Telefono: {personGobernante.telefono}</span>
+                  <span className="card__text">Edad: {personGobernante.edad}</span>
+                  <span className="card__text">Sexo: {personGobernante.sexo}</span>
                 </div></>
                 : <span className="sectionTitle"> Loading..</span>}
             </Col>
@@ -152,13 +152,14 @@ function App() {
                   <div className="card__image">
                     <img src="https://www.freeiconspng.com/thumbs/localization-icon/map-localization-icon-14.png" alt="card image"></img>
                   </div>
-                  <span className="card__title">{municipioByVivienda.nombre}</span>
-                  <span className="card__name">{municipioByVivienda.area}</span>
-                  <p className="card__text">{municipioByVivienda.presupuesto}</p>
+                  <span className="card__title">Nombre municipio: {municipioByVivienda.nombre}</span>
+                  <span className="card__name">Area: {municipioByVivienda.area}</span>
+                  <p className="card__text">Presupuesto: {municipioByVivienda.presupuesto}</p>
                 </div></>
                 : <span className="sectionTitle"> Loading..</span>}
             </Col>
           </Row>
+          <hr style={{ borderTop: '2px solid black' }} />
           <Row>
             <span className="sectionTitle">Habitantes:</span>
             {habitantesByVivienda ? <Swiper
@@ -167,11 +168,11 @@ function App() {
               centeredSlides={true}
               slidesPerView={"auto"}
               coverflowEffect={{
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
+                rotate: 25,
+                stretch: -50,
+                depth: 300,
                 modifier: 1,
-                slideShadows: true,
+                slideShadows: false,
               }}
               pagination={true}
               modules={[EffectCoverflow, Pagination]}
@@ -185,10 +186,10 @@ function App() {
                     </div>
 
                     <div className="card__content">
-                      <span className="card__title">{persona.nombre}</span>
-                      <span className="card__name">{persona.telefono}</span>
-                      <p className="card__text">{persona.edad}</p>
-                      <button className="card__btn">{persona.sexo}</button>
+                      <span className="card__title">Nombre: {persona.nombre}</span>
+                      <span className="card__name">Telefono: {persona.telefono}</span>
+                      <span className="card__text">Edad: {persona.edad}</span>
+                      <span className="card__text">Sexo: {persona.sexo}</span>
                     </div>
                   </div>
                 </SwiperSlide>
