@@ -12,7 +12,7 @@ app.use(bp.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));
 
 const connection = mysql.createConnection({
-  host: '186.155.54.114',
+  host: '186.31.183.75',
   user: 'pepe',
   password: '1211',
   database: 'lab1'
@@ -239,8 +239,8 @@ app.get('/personas_con_vivienda', (req, res) => {
 
 //Escribir personas con vivienda
 app.post('/personas_con_vivienda', (req, res) => {
-  const { personaid_persona, viviendaid_vivienda } = req.body;
-  connection.query('INSERT INTO personas_con_vivienda (personaid_persona, viviendaid_vivienda) VALUES (?, ?)', [personaid_persona, viviendaid_vivienda], (err, result) => {
+  const { personaid_persona, viviendaid_viv } = req.body;
+  connection.query('INSERT INTO personas_con_vivienda (personaid_persona, viviendaid_viv) VALUES (?, ?)', [personaid_persona, viviendaid_viv], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al crear la relación entre persona y vivienda');
@@ -254,8 +254,8 @@ app.post('/personas_con_vivienda', (req, res) => {
 app.put('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
   const personaid = req.params.id_persona;
   const viviendaid = req.params.id_vivienda;
-  const { personaid_persona, viviendaid_vivienda } = req.body;
-  connection.query('UPDATE personas_con_vivienda SET personaid_persona = ?, viviendaid_vivienda = ? WHERE personaid_persona = ? AND viviendaid_vivienda = ?', [personaid_persona, viviendaid_vivienda, personaid, viviendaid], (err, result) => {
+  const { personaid_persona, viviendaid_viv } = req.body;
+  connection.query('UPDATE personas_con_vivienda SET personaid_persona = ?, viviendaid_viv = ? WHERE personaid_persona = ? AND viviendaid_viv = ?', [personaid_persona, viviendaid_viv, personaid, viviendaid], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al actualizar la relación entre persona y vivienda');
@@ -269,7 +269,7 @@ app.put('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
 app.delete('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
   const personaid = req.params.id_persona;
   const viviendaid = req.params.id_vivienda;
-  connection.query('DELETE FROM personas_con_vivienda WHERE personaid_persona = ? AND viviendaid_vivienda = ?', [personaid, viviendaid], (err, result) => {
+  connection.query('DELETE FROM personas_con_vivienda WHERE personaid_persona = ? AND viviendaid_viv = ?', [personaid, viviendaid], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al borrar la relación entre persona y vivienda');
