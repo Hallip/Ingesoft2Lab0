@@ -9,6 +9,7 @@ const port = 3000
 
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')));
 
 const connection = mysql.createConnection({
   host: '186.155.54.114',

@@ -6,11 +6,12 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import './App.css';
-
+import './Utils/casa.jpg';
 function App() {
   const [personas, setPersonas] = useState([]);
   const [viviendas, setViviendas] = useState([]);
   const [municipios, setMunicipios] = useState([]);
+  const [gobernantes, setGobernantes] = useState([]);
 
   useEffect(() => {
     fetch('/municipios')
@@ -27,11 +28,18 @@ function App() {
       .catch(error => console.error(error));
     fetch('/gobernantes')
       .then(response => response.json())
-      .then(data => setPersonas(data))
+      .then(data => setGobernantes(data))
       .catch(error => console.error(error));
-      
+
   }, []);
 
+  if(gobernantes > 0){
+    gobernantes.forEach(gobernante => {
+      if (gobernante.id_persona == municipios.id){
+        let personGobernante = 
+      }
+    });
+  }
 
   return (
     <div className="App">
@@ -58,7 +66,7 @@ function App() {
               <SwiperSlide>
                 <div className="card">
                   <div className="card__image">
-                    <img src="./Utils/casa.jpg" alt="card image"></img>
+                    <img src="../Utils/casa.jpg" alt="card image"></img>
                   </div>
 
                   <div className="card__content">
@@ -74,15 +82,15 @@ function App() {
         <hr style={{ borderTop: '2px solid black' }} />
         <Row>
           <Col className="border-right">
-            {personas.length ?
+            {gobernantes.length ?
               <><span className="sectionTitle">Propietario:</span><div className="card__content">
                 <div className="card__image">
                   <img src="./Utils/casa.jpg" alt="card image"></img>
                 </div>
-                <span className="card__title">{personas[0].nombre}</span>
-                <span className="card__name">{personas[0].telefono}</span>
-                <p className="card__text">{personas[0].edad}</p>
-                <button className="card__btn">{personas[0].sexo}</button>
+                <span className="card__title">{gobernantes[0].nombre}</span>
+                <span className="card__name">{gobernantes[0].telefono}</span>
+                <p className="card__text">{gobernantes[0].edad}</p>
+                <button className="card__btn">{gobernantes[0].sexo}</button>
               </div></>
               : <span className="sectionTitle"> Loading..</span>}
           </Col>
