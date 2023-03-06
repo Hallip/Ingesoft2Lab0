@@ -226,7 +226,7 @@ app.delete('/viviendas/:id_viv', (req, res) => {
 
 // Leer personas con vivienda
 app.get('/personas_con_vivienda', (req, res) => {
-  db.query('SELECT * FROM personas_con_vivienda', (err, result) => {
+  connection.query('SELECT * FROM personas_con_vivienda', (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al obtener las personas con vivienda');
@@ -239,7 +239,7 @@ app.get('/personas_con_vivienda', (req, res) => {
 //Escribir personas con vivienda
 app.post('/personas_con_vivienda', (req, res) => {
   const { personaid_persona, viviendaid_vivienda } = req.body;
-  db.query('INSERT INTO personas_con_vivienda (personaid_persona, viviendaid_vivienda) VALUES (?, ?)', [personaid_persona, viviendaid_vivienda], (err, result) => {
+  connection.query('INSERT INTO personas_con_vivienda (personaid_persona, viviendaid_vivienda) VALUES (?, ?)', [personaid_persona, viviendaid_vivienda], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al crear la relación entre persona y vivienda');
@@ -254,7 +254,7 @@ app.put('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
   const personaid = req.params.id_persona;
   const viviendaid = req.params.id_vivienda;
   const { personaid_persona, viviendaid_vivienda } = req.body;
-  db.query('UPDATE personas_con_vivienda SET personaid_persona = ?, viviendaid_vivienda = ? WHERE personaid_persona = ? AND viviendaid_vivienda = ?', [personaid_persona, viviendaid_vivienda, personaid, viviendaid], (err, result) => {
+  connection.query('UPDATE personas_con_vivienda SET personaid_persona = ?, viviendaid_vivienda = ? WHERE personaid_persona = ? AND viviendaid_vivienda = ?', [personaid_persona, viviendaid_vivienda, personaid, viviendaid], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al actualizar la relación entre persona y vivienda');
@@ -268,7 +268,7 @@ app.put('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
 app.delete('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
   const personaid = req.params.id_persona;
   const viviendaid = req.params.id_vivienda;
-  db.query('DELETE FROM personas_con_vivienda WHERE personaid_persona = ? AND viviendaid_vivienda = ?', [personaid, viviendaid], (err, result) => {
+  connection.query('DELETE FROM personas_con_vivienda WHERE personaid_persona = ? AND viviendaid_vivienda = ?', [personaid, viviendaid], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al borrar la relación entre persona y vivienda');
@@ -280,7 +280,7 @@ app.delete('/personas_con_vivienda/:id_persona/:id_vivienda', (req, res) => {
 
 // Leer Gobernates
 app.get('/gobernantes', (req, res) => {
-  db.query('SELECT * FROM gobernantes', (err, result) => {
+  connection.query('SELECT * FROM gobernantes', (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al obtener los gobernantes');
@@ -293,7 +293,7 @@ app.get('/gobernantes', (req, res) => {
 // Crear Gobernantes
 app.post('/gobernantes', (req, res) => {
   const { id_persona, id_mun } = req.body;
-  db.query('INSERT INTO gobernantes (id_persona, id_mun) VALUES (?, ?)', [id_persona, id_mun], (err, result) => {
+  connection.query('INSERT INTO gobernantes (id_persona, id_mun) VALUES (?, ?)', [id_persona, id_mun], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send('Error al agregar un nuevo gobernante');
@@ -307,7 +307,7 @@ app.post('/gobernantes', (req, res) => {
 app.put('/gobernantes/:id', (req, res) => {
   const id = req.params.id;
   const { id_persona, id_mun } = req.body;
-  db.query('UPDATE gobernantes SET id_persona = ?, id_mun = ? WHERE id = ?', [id_persona, id_mun, id], (err, result) => {
+  connection.query('UPDATE gobernantes SET id_persona = ?, id_mun = ? WHERE id = ?', [id_persona, id_mun, id], (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send(`Error al actualizar el gobernante con id ${id}`);
@@ -322,7 +322,7 @@ app.put('/gobernantes/:id', (req, res) => {
 // Borrar gobernates
 app.delete('/gobernantes/:id', (req, res) => {
   const id = req.params.id;
-  db.query('DELETE FROM gobernantes WHERE id = ?', id, (err, result) => {
+  connection.query('DELETE FROM gobernantes WHERE id = ?', id, (err, result) => {
      if (err) {
         console.log(err);
         res.status(500).send(`Error al borrar el gobernante con id ${id}`);
