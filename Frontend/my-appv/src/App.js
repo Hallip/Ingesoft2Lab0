@@ -33,119 +33,124 @@ function App() {
 
   }, []);
 
-  if(gobernantes > 0){
-    gobernantes.forEach(gobernante => {
-      if (gobernante.id_persona == municipios.id){
-        let personGobernante = 
-      }
-    });
-  }
+  let personGobernante = null;
+
+        // gobernantes.forEach(gobernante => {
+        //   if (gobernante.id_mun == vivienda.municipioid) {
+        //               personas.forEach(persona => {
+        //                 if (gobernante.id_persona == persona.id) {
+        //                   personGobernante = persona;
+        //                 }
+        //               }
+        //               )
+        //             }
+        // })
 
   return (
     <div className="App">
       <div className="Pantalla">
-      <Container>
-        <Row>
-          <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            pagination={true}
-            modules={[EffectCoverflow, Pagination]}
-            className="mySwiper"
-          >
-            {viviendas.map(vivienda => (
-              <SwiperSlide>
-                <div className="card">
-                  <div className="card__image">
-                    <img src="../Utils/casa.jpg" alt="card image"></img>
+        <Container>
+          <Row>
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              modules={[EffectCoverflow, Pagination]}
+              className="mySwiper"
+            >
+              {viviendas.map(vivienda => (
+                <SwiperSlide>
+                  <div className="card">
+                    <div className="card__image">
+                      <img src="../Utils/casa.jpg" alt="card image"></img>
+                    </div>
+                    <div className="card__content">
+                      <span className="card__title">{vivienda.direccion}</span>
+                      <span className="card__name">{vivienda.capacidad}</span>
+                      <p className="card__text">{vivienda.niveles}</p>
+                    </div>
                   </div>
-
-                  <div className="card__content">
-                    <span className="card__title">{vivienda.direccion}</span>
-                    <span className="card__name">{vivienda.capacidad}</span>
-                    <p className="card__text">{vivienda.niveles}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Row>
-        <hr style={{ borderTop: '2px solid black' }} />
-        <Row>
-          <Col className="border-right">
-            {gobernantes.length ?
-              <><span className="sectionTitle">Propietario:</span><div className="card__content">
-                <div className="card__image">
-                  <img src="./Utils/casa.jpg" alt="card image"></img>
-                </div>
-                <span className="card__title">{gobernantes[0].nombre}</span>
-                <span className="card__name">{gobernantes[0].telefono}</span>
-                <p className="card__text">{gobernantes[0].edad}</p>
-                <button className="card__btn">{gobernantes[0].sexo}</button>
-              </div></>
-              : <span className="sectionTitle"> Loading..</span>}
-          </Col>
-          <Col>
-            {municipios.length ?
-              <><span className="sectionTitle">Localizacion:</span><div className="card__content">
-                <div className="card__image">
-                  <img src="./Utils/local.png" alt="card image"></img>
-                </div>
-                <span className="card__title">{municipios[0].nombre}</span>
-                <span className="card__name">{municipios[0].area}</span>
-                <p className="card__text">{municipios[0].presupuesto}</p>
-              </div></>
-              : <span className="sectionTitle"> Loading..</span>}
-          </Col>
-        </Row>
-        <Row>
-        <span className="sectionTitle">Habitantes:</span>
-        <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            pagination={true}
-            modules={[EffectCoverflow, Pagination]}
-            className="mySwiper"
-          >
-            {personas.map(persona => (
-              <SwiperSlide>
-                <div className="card">
+                  
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Row>
+          <hr style={{ borderTop: '2px solid black' }} />
+          <Row>
+            <Col className="border-right">
+              {personGobernante.length ?
+                <><span className="sectionTitle">Propietario:</span><div className="card__content">
                   <div className="card__image">
                     <img src="./Utils/casa.jpg" alt="card image"></img>
                   </div>
-
-                  <div className="card__content">
-                    <span className="card__title">{persona.nombre}</span>
-                    <span className="card__name">{persona.telefono}</span>
-                    <p className="card__text">{persona.edad}</p>
-                    <button className="card__btn">{persona.sexo}</button>
+                  <span className="card__title">{personGobernante.nombre}</span>
+                  <span className="card__name">{personGobernante.telefono}</span>
+                  <p className="card__text">{personGobernante.edad}</p>
+                  <button className="card__btn">{personGobernante.sexo}</button>
+                </div></>
+                : <span className="sectionTitle"> Loading..</span>}
+            </Col>
+            <Col>
+              {municipios.length ?
+                <><span className="sectionTitle">Localizacion:</span><div className="card__content">
+                  <div className="card__image">
+                    <img src="./Utils/local.png" alt="card image"></img>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Row>
-      </Container>
+                  <span className="card__title">{municipios[0].nombre}</span>
+                  <span className="card__name">{municipios[0].area}</span>
+                  <p className="card__text">{municipios[0].presupuesto}</p>
+                </div></>
+                : <span className="sectionTitle"> Loading..</span>}
+            </Col>
+          </Row>
+          <Row>
+            <span className="sectionTitle">Habitantes:</span>
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              modules={[EffectCoverflow, Pagination]}
+              className="mySwiper"
+            >
+              {personas.map(persona => (
+                <SwiperSlide>
+                  <div className="card">
+                    <div className="card__image">
+                      <img src="./Utils/casa.jpg" alt="card image"></img>
+                    </div>
+
+                    <div className="card__content">
+                      <span className="card__title">{persona.nombre}</span>
+                      <span className="card__name">{persona.telefono}</span>
+                      <p className="card__text">{persona.edad}</p>
+                      <button className="card__btn">{persona.sexo}</button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Row>
+        </Container>
       </div>
-      
+
 
 
     </div>
