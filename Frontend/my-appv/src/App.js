@@ -87,15 +87,15 @@ function App() {
           <hr style={{ borderTop: '2px solid black' }} />
           <Row>
             <Col className="border-right">
-              {personGobernante.length ?
+              {personas.length ?
                 <><span className="sectionTitle">Propietario:</span><div className="card__content">
                   <div className="card__image">
                     <img src="./Utils/casa.jpg" alt="card image"></img>
                   </div>
-                  <span className="card__title">{personGobernante.nombre}</span>
-                  <span className="card__name">{personGobernante.telefono}</span>
-                  <p className="card__text">{personGobernante.edad}</p>
-                  <button className="card__btn">{personGobernante.sexo}</button>
+                  <span className="card__title">{personas[0].nombre}</span>
+                  <span className="card__name">{personas[0].telefono}</span>
+                  <p className="card__text">{personas[0].edad}</p>
+                  <button className="card__btn">{personas[0].sexo}</button>
                 </div></>
                 : <span className="sectionTitle"> Loading..</span>}
             </Col>
